@@ -4,7 +4,12 @@ using System.Collections;
 public class RayShooter : MonoBehaviour {
 	private Camera _camera;
 
+	private Material greenMat;
+
 	void Start() {
+
+		greenMat = Resources.Load("playerFire") as Material;
+
 		_camera = GetComponent<Camera>();
 
 		Cursor.lockState = CursorLockMode.Locked;
@@ -37,6 +42,9 @@ public class RayShooter : MonoBehaviour {
 
 	private IEnumerator SphereIndicator(Vector3 pos) {
 		GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+
+		sphere.gameObject.GetComponent<Renderer> ().material = greenMat;
+
 		sphere.transform.position = pos;
 
 		yield return new WaitForSeconds(1);

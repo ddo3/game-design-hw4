@@ -19,8 +19,12 @@ public class SceneController : MonoBehaviour {
 	//private GameObject _enemy;
     private ArrayList _enemies;
 
+	private int count;
+
     void Start()
     {
+		count = 0;
+
 		//load enemy textures
 		//greenMat = Resources.Load("GreenMaterial") as Material;
 		fish = Resources.Load("fish") as Material;
@@ -48,17 +52,20 @@ public class SceneController : MonoBehaviour {
     }
 
 	Material getNextMat(){
-		//Random r = new Random();
-		int rInt = Random.Range(1, 3); //for ints
 
-		if(rInt == 1){
-			return jellyfish;
-		}else if(rInt == 2){
-			return turtle;
+		Material mat;
+
+		if(count == 1){
+			mat = jellyfish;
+		}else if(count == 2){
+			mat = turtle;
 		}else{
-			return fish;
+			mat = fish;
 		}
+			
+		count = (count + 1) % 3;
 
+		return mat;
 	}
 
 
